@@ -13,35 +13,35 @@
  */
 class M_kelas extends CI_Model {
 
-	//put your code here
+    //put your code here
 
-	function getKelasBy($idkelas) {
-		$query = "SELECT *, kelas.nama as nama_kelas, kategori_kelas.nama as nama_kategori, kelas.deskripsi as deskripsi_kelas FROM kelas INNER JOIN kategori_kelas ON kelas.id_kategori=kategori_kelas.id WHERE kelas.id_kelas='$idkelas' ORDER BY id_kelas ASC";
-		return $this->db->query($query)->row();
-	}
+    function getKelasBy($idkelas) {
+        $query = "SELECT *, kelas.nama as nama_kelas, kategori_kelas.nama as nama_kategori, kelas.deskripsi as deskripsi_kelas FROM kelas INNER JOIN kategori_kelas ON kelas.id_kategori=kategori_kelas.id WHERE kelas.id_kelas='$idkelas' ORDER BY id_kelas ASC";
+        return $this->db->query($query)->row();
+    }
 
-	function daftarKelas() {
-		$query = "SELECT *, kelas.nama as nama_kelas, kategori_kelas.nama as nama_kategori, kelas.deskripsi as deskripsi_kelas FROM kelas INNER JOIN kategori_kelas ON kelas.id_kategori=kategori_kelas.id ORDER BY id_kelas ASC ";
-		return $this->db->query($query)->result();
-	}
+    function daftarKelas() {
+        $query = "SELECT *, kelas.nama as nama_kelas, kategori_kelas.nama as nama_kategori, kelas.deskripsi as deskripsi_kelas FROM kelas INNER JOIN kategori_kelas ON kelas.id_kategori=kategori_kelas.id ORDER BY id_kelas ASC ";
+        return $this->db->query($query)->result();
+    }
 
-	function insertKelas($objectData) {
-		$this->db->insert('kelas', $objectData);
-		return $this->db->affected_rows();
-	}
+    function insertKelas($objectData) {
+        $this->db->insert('kelas', $objectData);
+        return $this->db->affected_rows();
+    }
 
-	function editKelas($object, $condition) {
-		$this->db->where($condition);
-		$this->db->update('kelas', $object);
+    function editKelas($object, $condition) {
+        $this->db->where($condition);
+        $this->db->update('kelas', $object);
 
-		return $this->db->affected_rows();
-	}
+        return $this->db->affected_rows();
+    }
 
-	function hapusKelas($condition) {
-		$this->db->where($condition);
-		$this->db->delete('kelas');
+    function hapusKelas($condition) {
+        $this->db->where($condition);
+        $this->db->delete('kelas');
 
-		return $this->db->affected_rows();
-	}
+        return $this->db->affected_rows();
+    }
 
 }

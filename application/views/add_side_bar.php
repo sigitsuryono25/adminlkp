@@ -15,60 +15,69 @@
                 </select>
             </div>
             <div class="col-md-6">
-                <label>Informasi</label>
-                <?php echo form_textarea(array("name" => "konten", 'id' => 'konten')) ?><br>
-                <script>
-                    var editor = CKEDITOR.replace('konten', {
-                        removeButtons: 'Save,Print,Source,Templates,Form,CheckboxFind,Replace,Strikethrough,Subscript,Superscript,Textarea,Button,Preview,Maximize,Flash,Smiley',
-                        filebrowserBrowseUrl: '<?php echo base_url() ?>assets/ckfinder/ckfinder.html',
-                        filebrowserUploadUrl: '<?php echo base_url() ?>assets/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
-                    });
-                    CKFinder.setupCKEditor(editor, '../../assets/ckfinder/');
-                </script>
+                <div class="container-fluid">
+                    <div class="form-group">
+                        <label>Untuk Kapan ? (Weekday/Weekend)</label>
+                        <select class="form-control" name="the-day" required>
+                            <option value="">--Silahkan Pilih Satu--</option>
+                            <option value="0">Weekdays</option>
+                            <option value="1">Weekend</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tanggal Mulai</label>
+                        <input type="text" name="tanggal-mulai" class="form-control datepicker" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Tanggal Selesai</label>
+                        <input type="text" name="tanggal-selesai" class="form-control datepicker" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Hari</label>
+                        <select class="form-control" name="hari" required>
+                            <option value="">--Silahkan Pilih Satu--</option>
+                            <option value="Senin">Senin</option>
+                            <option value="Selasa">Selasa</option>
+                            <option value="Rabu">Rabu</option>
+                            <option value="Kamis">Kamis</option>
+                            <option value="Jumat">Jumat</option>
+                            <option value="Sabtu">Sabtu</option>
+                            <option value="Minggu">Minggu</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Durasi</label>
+                        <input type="text" name="durasi" placeholder="1 Bulan Misalnya" class="form-control" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Lokasi</label>
+                        <input type="text" name="lokasi" value="Ruang Training LKP Unikom Yogyakarta" class="form-control" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Peserta Minimal</label>
+                        <input type="text" name="peserta" placeholder="Min 3 Orang Misalnya   " class="form-control" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg-12 col-12">
+                <button type="button" class="btn btn-primary" id="btn-submit">Simpan</button>
             </div>
         </form>
-        <div class="col-md-12 col-sm-12 col-lg-12 col-12">
-            <button type="button" class="btn btn-primary" id="btn-submit">Simpan</button>
-        </div>
     </div>
 </div>
 <script>
     $("#btn-submit").click(function () {
-        for (instance in CKEDITOR.instances) {
-            CKEDITOR.instances[instance].updateElement();
-        }
         var data = $("#form-side-bar").serialize();
         console.log(data);
         $.ajax({
             data: data,
             type: 'POST',
             url: '<?php echo site_url("dash/add_side_bar_proc") ?>',
-            success: function (j, t, e) {
-                if (j == 0) {
-                    swal({
-                        title: 'Penambahan Sidebar Info Berhasil',
-                        text: "You won't be able to revert this!",
-                        type: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Yes, delete it!'
-                    }).then((result) => {
-                        if (result.value) {
-                            swal(
-                                    'Deleted!',
-                                    'Your file has been deleted.',
-                                    'success'
-                                    )
-                        }
-                    })
-                    swal('', '', 'success');
-                } else {
-
-                }
-            },
-            error: function (j, t, e) {
-                swal(t + "{ " + e + " }", '', 'error');
+            success: function (data, textStatus, jqXHR) {
+                swal(textStatus, "Informasi Berhasil Ditambahkan", textStatus);
+            }
+            , error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus + errorThrown);
             }
         });
     });

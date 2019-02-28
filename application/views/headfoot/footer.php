@@ -25,6 +25,9 @@
 
 <script>
     $(".formatUang").maskMoney({thousands: '.', decimal: ',', precision: 0});
+    $(function () {
+        $(".datepicker").datepicker();
+    });
 </script>
 
 </html>

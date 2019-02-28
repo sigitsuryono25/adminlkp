@@ -14,6 +14,7 @@
         <!-- Google font-->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
         <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <!-- Required Fremwork -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/bootstrap/css/bootstrap.min.css">
         <!-- themify-icons line icon -->
@@ -31,6 +32,7 @@
         <script src="<?php echo base_url('assets/ckeditor/ckeditor.js') ?>"></script>
         <script src="<?php echo base_url('assets/ckfinder/ckfinder.js') ?>"></script>
         <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     </head>
     <style>
         .pointer {cursor: pointer;}
